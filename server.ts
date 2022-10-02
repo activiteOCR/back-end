@@ -8,7 +8,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 
 const corsOptions = {
-    origin: 'https://hyenagangstaclub.com',
+    origin: 'https://www.meg4mint.xyz/',
     optionsSuccessStatus: 200,
     methods: "GET, PUT"
 }

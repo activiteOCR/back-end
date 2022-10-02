@@ -4,10 +4,8 @@ import DiscordJS, { ChannelManager, Intents } from 'discord.js'
 import dotenv from 'dotenv'
 dotenv.config() // to get access to the variables from .env file
 
-// const GUILD_ID = "988176050544603207"
-// const CHANNEL_ID = "988176051052097558"
-const GUILD_ID = "970681109807521853"
-const CHANNEL_ID = "998253545570705409"
+const GUILD_ID = "1013893737186869318"
+const CHANNEL_ID = "1013895771294277632"
 
 const client = new DiscordJS.Client({
     intents: [ //specify the intentiens of our bot, what he want to do in discord

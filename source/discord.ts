@@ -21,7 +21,7 @@ client.on('ready', () => {
     console.log('#Discord : bot ready', client.user?.tag);
     guild = client.guilds.cache.get(GUILD_ID)
     if (guild !== null) {
-        console.log('#Discord :guild availbalbe');
+        console.log('#Discord :guild available');
         guild?.members.fetch()
             .then((data: any) => {
                 data.forEach((element: any) => {

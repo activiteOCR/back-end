@@ -56,6 +56,7 @@ export const refreshFollowersDatabase = async () => {
      */
     let followers_array: any[] = [];
     let error_counter:number = 0;
+    console.log("refresh");
     try {
         const response: any = client.users.usersIdFollowers(HGC_ID,
             {
@@ -66,25 +67,24 @@ export const refreshFollowersDatabase = async () => {
             // page.data.forEach(async (element: any, index: number) => {
                 for (const element of page.data) {
                 // followers_array.push(element)
-                try {
                     let follower = await saveFollower(element);
-                    console.log(follower);
-                    
-                } catch (error:any) {
-                    console.log('#mongodb twitter error', error.code)
-                    if(error.code === 11000) {
-                        error_counter++;
+                    if(follower) {
+                        console.log(` + new follower ${follower}`);
                     }
-                }
-                if(error_counter >= 10) break 
+                    else {
+                    console.log("follower already in db ");
+                    }
             };
-            await sleep(30000)
+            await sleep(30000)            
         }
     } catch (error) {
+
         console.error("#twitter error :", error);
     }
 }
-cron.schedule(('0 0 0 * * *'), () => {
-    refreshFollowersDatabase()
-})
+// cron.schedule(('0 0 0 * * *'), () => {
+//     refreshFollowersDatabase()
+// })
+refreshFollowersDatabase()
+console.log("refresh2");
 // verifyFollower('AleksejTopalov').then(console.log).catch(console.error);

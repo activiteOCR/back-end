@@ -6,6 +6,7 @@ import sampleRoutes from './source/routers/giveaway.route'
 import helmet from 'helmet'
 import mongoose from 'mongoose'
 import cors from 'cors'
+import './source/twitter'
 
 const corsOptions = {
     origin: 'https://www.meg4mint.xyz',
@@ -20,6 +21,7 @@ mongoose.connect(`mongodb+srv://hyena:${process.env.MONGODB_PWD}@cluster0.ddgjs.
     .catch((err) => {
         console.error('mongodb error : ', err);
     })
+    
 const NAMESPACE = 'Server';
 const app = express();
 

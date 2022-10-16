@@ -14,6 +14,7 @@ const client = new DiscordJS.Client({
         Intents.FLAGS.GUILD_MEMBERS
     ]
 })
+console.log("#################discord");
 
 let guild: any = null;
 
@@ -64,13 +65,13 @@ export const sendMessageParticipate = async (user: string) => {
         let channel: any = client.channels.cache.get(CHANNEL_ID);
         let discordUser: any = await getMemberByTag(user)
         console.log("user ", discordUser)
-        const attachment = new DiscordJS.MessageAttachment('./source/assets/images/meme.jpg')
+        const attachment = new DiscordJS.MessageAttachment('./source/assets/images/cryptoRocket.jpg')
         const embed = new DiscordJS.MessageEmbed()
-            .setDescription(`See you for the raffle on Monday August 22th at 10:00pm (GMT+2) <@${discordUser.id}> !`)
-            .setTitle(`Good luck getting on the HGC whitelist Gangsta 👊`)
+            .setDescription(`See you for the raffle TBD <@${discordUser.id}> !`)
+            .setTitle(`Good luck getting on the Crypto raffle Meg4mint 👊`)
             .setColor(0xffdd00)
             // .setImage(discordUser.displayAvatarURL({ format: 'png' })) //display user Avatar
-            .setImage('attachment://meme.jpg')
+            .setImage('attachment://cryptoRocket.jpg')
         // channel.send(`<@${discordUser.id}> `)
         await channel.send({ embeds: [embed], files:[attachment] })
         return true

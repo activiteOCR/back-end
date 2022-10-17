@@ -32,12 +32,13 @@ export const saveParticipant = async (participant: Participant) => {
                 ...participant,
                 discordId:discordMember.id
             })
-            let saveParticipant = await doc_participant.save();
+            await doc_participant.save();
             // console.log('saveParticipant', saveParticipant)
-            sendMessageParticipate(participant.discord)
-                .catch((err) => {
-                    throw err
-                })
+            await sendMessageParticipate(participant.discord)
+            // sendMessageParticipate(participant.discord)
+            //     .catch((err) => {
+            //         throw err
+            //     })
                 //push to smartContract "participant.discord"
             resolve(true)
         } catch (error: any) {

@@ -60,25 +60,28 @@ export const verifyUser = (user: string) => {
 }
 
 export const sendMessageParticipate = async (user: string) => {
+    new Promise<void>( async(resolve, reject) => {
+        try {
+            let channel: any = client.channels.cache.get(CHANNEL_ID);
+            let discordUser: any = await getMemberByTag(user)
+            console.log("user ", discordUser)
+            const attachment = new DiscordJS.MessageAttachment('./source/assets/images/cryptoRocket.png')
+            const embed = new DiscordJS.MessageEmbed()
+                .setDescription(`See you for the raffle TBD <@${discordUser.id}> !`)
+                .setTitle(`Good luck getting on the Crypto raffle Meg4mint 👊`)
+                .setColor(0xffdd00)
+                // .setImage(discordUser.displayAvatarURL({ format: 'png' })) //display user Avatar
+                .setImage('attachment://cryptoRocket.png')
+            // channel.send(`<@${discordUser.id}> `)
+            await channel.send({ embeds: [embed], files:[attachment] })
+            resolve()
+        } catch (error) {
+            console.log(error);
+            reject(error)
+        }
+    })
     //discord js : send a message to the DISCORD_CHANEL
-    try {
-        let channel: any = client.channels.cache.get(CHANNEL_ID);
-        let discordUser: any = await getMemberByTag(user)
-        console.log("user ", discordUser)
-        const attachment = new DiscordJS.MessageAttachment('./source/assets/images/cryptoRocket.jpg')
-        const embed = new DiscordJS.MessageEmbed()
-            .setDescription(`See you for the raffle TBD <@${discordUser.id}> !`)
-            .setTitle(`Good luck getting on the Crypto raffle Meg4mint 👊`)
-            .setColor(0xffdd00)
-            // .setImage(discordUser.displayAvatarURL({ format: 'png' })) //display user Avatar
-            .setImage('attachment://cryptoRocket.jpg')
-        // channel.send(`<@${discordUser.id}> `)
-        await channel.send({ embeds: [embed], files:[attachment] })
-        return true
-    } catch (error) {
-        console.log(error);
-        throw error
-    }
+
 }
 
 export const getMemberByTag = async (member: string) => {
